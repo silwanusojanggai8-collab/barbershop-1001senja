@@ -27,11 +27,52 @@ const tanggalInput = document.getElementById('tanggal');
 const today = new Date().toISOString().split('T')[0];
 tanggalInput.min = today;
 
-// ===== FORM BOOKING =====
+// ===== FORM BOOKING → WHATSAPP =====
 const bookingForm = document.getElementById('bookingForm');
+
 bookingForm.addEventListener('submit', (e) => {
   e.preventDefault();
+
+  // Ambil data dari form
   const nama = document.getElementById('nama').value;
-  alert(`Terima kasih, ${nama}! Booking Anda telah kami terima. Kami akan menghubungi Anda untuk konfirmasi.`);
+  const telepon = document.getElementById('telepon').value;
+  const layanan = document.getElementById('layanan').value;
+  const tanggal = document.getElementById('tanggal').value;
+  const jam = document.getElementById('jam').value;
+  const catatan = document.getElementById('catatan').value || '-';
+
+  // Format tanggal jadi lebih rapi
+  const tglFormat = new Date(tanggal).toLocaleDateString('id-ID', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+
+  // ⚠️ GANTI NOMOR INI DENGAN NOMOR WA KAMU!
+  // Format: 62 + nomor tanpa 0 di depan
+  // Contoh: 0812-3456-7890 → 6281234567890
+  const nomorWA = '62082257923745';
+
+  // Susun pesan
+  const pesan = 
+`Halo *Barbershop 1001Senja* 👋
+
+Saya mau booking:
+
+👤 *Nama:* ${nama}
+📱 *No. HP:* ${telepon}
+✂️ *Layanan:* ${layanan}
+📅 *Tanggal:* ${tglFormat}
+⏰ *Jam:* ${jam}
+📝 *Catatan:* ${catatan}
+
+Mohon konfirmasinya ya. Terima kasih! 🙏`;
+
+  // Buka WhatsApp
+  const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+  window.open(urlWA, '_blank');
+
+  // Reset form
   bookingForm.reset();
 });
