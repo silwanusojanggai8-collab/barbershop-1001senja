@@ -52,7 +52,7 @@ bookingForm.addEventListener('submit', (e) => {
   // ⚠️ GANTI NOMOR INI DENGAN NOMOR WA KAMU!
   // Format: 62 + nomor tanpa 0 di depan
   // Contoh: 0812-3456-7890 → 6281234567890
-  const nomorWA = '62082257923745';
+  const nomorWA = '6282142645637';
 
   // Susun pesan
   const pesan = 
@@ -76,3 +76,4 @@ Mohon konfirmasinya ya. Terima kasih! 🙏`;
   // Reset form
   bookingForm.reset();
 });
+Update nomor WhatsApp booking
